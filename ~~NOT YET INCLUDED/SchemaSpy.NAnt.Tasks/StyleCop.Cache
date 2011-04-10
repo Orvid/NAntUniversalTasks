@@ -1,0 +1,72 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="-737971608">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="ColumnRelationshipExclusionCollection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/31/2009 12:44:17</timestamp>
+    <milliseconds>121</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Column.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/31/2009 12:44:38</timestamp>
+    <milliseconds>981</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/02/2009 21:47:15</timestamp>
+    <milliseconds>125</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Schema.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/31/2009 12:46:58</timestamp>
+    <milliseconds>684</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SchemaCollection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/02/2009 21:47:15</timestamp>
+    <milliseconds>375</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SchemaSpyValidator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/02/2009 21:47:15</timestamp>
+    <milliseconds>375</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1396449967">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="SchemaSpy.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/31/2009 12:48:10</timestamp>
+      <milliseconds>996</milliseconds>
+    </settings>
+    <timestamp>07/31/2009 12:51:28</timestamp>
+    <milliseconds>902</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

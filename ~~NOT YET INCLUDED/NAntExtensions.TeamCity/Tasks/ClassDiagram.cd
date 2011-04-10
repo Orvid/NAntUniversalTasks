@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NAntExtensions.TeamCity.Tasks.AddStatisticTask" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Tasks\AddStatisticTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.TeamCityTask" Collapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAgAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\TeamCityTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.AddStatisticListTask" Collapsed="true">
+    <Position X="7.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\AddStatisticListTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.BuildLogTask" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAQQAAACAAQAACAAAAAAAAAEAIEA=</HashCode>
+      <FileName>Tasks\BuildLogTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.BuildStatusTask" Collapsed="true">
+    <Position X="11.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAIAAAAAA=</HashCode>
+      <FileName>Tasks\BuildStatusTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.MessageTask" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\MessageTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.ProgressTask" Collapsed="true">
+    <Position X="16.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Tasks\ProgressTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.AddStatisticFromPropertiesTask" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Tasks\AddStatisticFromPropertiesTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.AppendStatusTextTask" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAgAAIAAAAAA=</HashCode>
+      <FileName>Tasks\AppendStatusTextTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.BuildNumberTask" Collapsed="true">
+    <Position X="9.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\BuildNumberTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NAntExtensions.TeamCity.Tasks.PublishArtifactsTask" Collapsed="true">
+    <Position X="14" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\PublishArtifactsTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
