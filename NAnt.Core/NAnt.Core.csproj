@@ -20,7 +20,7 @@
     <StartupObject />
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <OldToolsVersion>0.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <PublishUrl>publish\</PublishUrl>
@@ -38,18 +38,19 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Main NAnt BuildFile|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\build.VS.NET\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile />
-    <DefineConstants />
+    <DefineConstants>PHYSICALASSEMBLY;DOTNET;DOTNET35;</DefineConstants>
     <DocumentationFile>..\build.VS.NET\NAnt.Core.XML</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoWarn>0618,1591</NoWarn>
+    <NoWarn>0618,1591,3001,3002,3003,3008,3009</NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
@@ -60,24 +61,115 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CollectionGen">
+      <HintPath>..\lib\CollectionGen.dll</HintPath>
+    </Reference>
+    <Reference Include="ILMerge">
+      <HintPath>..\lib\ILMerge.exe</HintPath>
+    </Reference>
+    <Reference Include="Interop.MsmMergeTypeLib">
+      <HintPath>..\lib\Interop.MsmMergeTypeLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.StarTeam">
+      <HintPath>..\lib\Interop.StarTeam.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.WindowsInstaller">
+      <HintPath>..\lib\Interop.WindowsInstaller.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="log4net">
       <Name>log4net</Name>
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\lib\Machine.Specifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications.Reporting">
+      <HintPath>..\lib\Machine.Specifications.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit.Framework">
+      <HintPath>..\lib\MbUnit.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Engine" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities" />
     <Reference Include="mscorlib">
       <Name>mscorlib</Name>
+    </Reference>
+    <Reference Include="NDoc.Core, Version=1.3.3152.0, Culture=neutral, PublicKeyToken=b9896512f28c0f09">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NDoc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NDoc.Documenter.Msdn">
+      <HintPath>..\lib\NDoc.Documenter.Msdn.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util">
+      <HintPath>..\lib\nunit.util.dll</HintPath>
+    </Reference>
+    <Reference Include="NUnitCore, Version=1.11.786.40392, Culture=neutral, PublicKeyToken=1fd1558aebfb1c04">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnitCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SLiNgshoT.Core">
+      <HintPath>..\lib\SLiNgshoT.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceSafe.Interop">
+      <HintPath>..\lib\SourceSafe.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Instrumentation" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web">
       <Name>System.Web</Name>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <Reference Include="ThoughtWorks.CruiseControl.Remote">
+      <HintPath>..\lib\ThoughtWorks.CruiseControl.Remote.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyReferenceBase.cs" />
+    <Compile Include="Collections\Dictionary\DictionaryManager.cs" />
+    <Compile Include="Collections\Dictionary\Elements\DictionaryItemElement.cs" />
+    <Compile Include="Collections\Dictionary\Functions\DictionaryFunctions.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryAdd.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryBase.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryClear.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryCopy.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryCreate.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryDump.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryForEach.cs" />
+    <Compile Include="Collections\Dictionary\Tasks\DictionaryRemove.cs" />
+    <Compile Include="Collections\General\Elements\IfUnlessElement.cs" />
+    <Compile Include="Collections\List\Elements\ListItemElement.cs" />
+    <Compile Include="Collections\List\Functions\ListFunctions.cs" />
+    <Compile Include="Collections\List\ListManager.cs" />
+    <Compile Include="Collections\List\Tasks\ListAdd.cs" />
+    <Compile Include="Collections\List\Tasks\ListBase.cs" />
+    <Compile Include="Collections\List\Tasks\ListClear.cs" />
+    <Compile Include="Collections\List\Tasks\ListCopy.cs" />
+    <Compile Include="Collections\List\Tasks\ListCreate.cs" />
+    <Compile Include="Collections\List\Tasks\ListDump.cs" />
+    <Compile Include="Collections\List\Tasks\ListForEach.cs" />
+    <Compile Include="Collections\List\Tasks\ListPush.cs" />
+    <Compile Include="Collections\List\Tasks\ListRemove.cs" />
+    <Compile Include="Collections\List\Tasks\ListUnshift.cs" />
+    <Compile Include="Collections\Utility\CollectionManagers.cs" />
+    <Compile Include="Collections\Utility\NAntUtility.cs" />
     <Compile Include="CommonAssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -141,9 +233,14 @@
     <Compile Include="CommandLineOptions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ConfigurationBase.cs" />
+    <Compile Include="ConfigurationDictionary.cs" />
+    <Compile Include="ConfigurationMap.cs" />
     <Compile Include="ConfigurationSection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ConfigurationSettings.cs" />
     <Compile Include="Configuration\ConditionalElement.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,6 +265,8 @@
     <Compile Include="ConsoleDriver.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSharpProject.cs" />
+    <Compile Include="CSharpProjectProvider.cs" />
     <Compile Include="DataTypeBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -186,6 +285,8 @@
     <Compile Include="Element.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Everett\Solution.cs" />
+    <Compile Include="Everett\SolutionProvider.cs" />
     <Compile Include="ExpressionEvalBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -213,6 +314,8 @@
     <Compile Include="Extensibility\IPluginConsumer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensibility\IProjectBuildProvider.cs" />
+    <Compile Include="Extensibility\ISolutionBuildProvider.cs" />
     <Compile Include="Extensibility\PluginBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -222,6 +325,7 @@
     <Compile Include="Extensibility\PluginScanner.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FileReferenceBase.cs" />
     <Compile Include="Filters\ExpandProperties.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -255,6 +359,10 @@
     <Compile Include="Filters\TabsToSpaces.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FormatterData.cs" />
+    <Compile Include="FormatterDataCollection.cs" />
+    <Compile Include="FormatterElement.cs" />
+    <Compile Include="FormatterElementCollection.cs" />
     <Compile Include="FrameworkInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -279,6 +387,7 @@
     <Compile Include="Functions\ConversionFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\CygpathFunctions.cs" />
     <Compile Include="Functions\DateTimeFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -306,9 +415,12 @@
     <Compile Include="Functions\Int64Functions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\MachineSpecificationsFunctions.cs" />
     <Compile Include="Functions\MathFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\MbUnitFunctions.cs" />
+    <Compile Include="Functions\MSBuildFunctions.cs" />
     <Compile Include="Functions\NAntFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -330,6 +442,11 @@
     <Compile Include="Functions\VersionFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GenericSolution.cs" />
+    <Compile Include="IResultFormatter.cs" />
+    <Compile Include="IResultFormatterCollection.cs" />
+    <Compile Include="JSharpProject.cs" />
+    <Compile Include="JSharpProjectProvider.cs" />
     <Compile Include="Location.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -339,21 +456,240 @@
     <Compile Include="Log.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LogFormatter.cs" />
+    <Compile Include="ManagedAssemblyReference.cs" />
+    <Compile Include="ManagedProjectBase.cs" />
+    <Compile Include="ManagedProjectReference.cs" />
+    <Compile Include="ManagedWrapperReference.cs" />
+    <Compile Include="MSBuildAssemblyReference.cs" />
+    <Compile Include="MSBuildConfiguration.cs" />
+    <Compile Include="MSBuildEngine.cs" />
+    <Compile Include="MSBuildProject.cs" />
+    <Compile Include="MSBuildProjectProvider.cs" />
+    <Compile Include="MSBuildProjectReference.cs" />
+    <Compile Include="MSBuildReference.cs" />
+    <Compile Include="NAntContrib\Functions\FileFunctions.cs" />
+    <Compile Include="NAntContrib\Functions\FileSetFunctions.cs" />
+    <Compile Include="NAntContrib\Functions\MsiFunctions.cs" />
+    <Compile Include="NAntContrib\Functions\ServiceFunctions.cs" />
+    <Compile Include="NAntContrib\Tasks\ADSIBaseTask.cs" />
+    <Compile Include="NAntContrib\Tasks\ADSIGetPropertyTask.cs" />
+    <Compile Include="NAntContrib\Tasks\ADSISetPropertyTask.cs" />
+    <Compile Include="NAntContrib\Tasks\AstyleTask.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\BizTalkBase.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Deploy.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Export.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Host.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Import.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Orchestration.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\ReceiveLocation.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Reset.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\SendPort.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Unbind.cs" />
+    <Compile Include="NAntContrib\Tasks\BizTalk\Undeploy.cs" />
+    <Compile Include="NAntContrib\Tasks\ChangeDirectory.cs" />
+    <Compile Include="NAntContrib\Tasks\ChecksumTask.cs" />
+    <Compile Include="NAntContrib\Tasks\ChooseTask.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\Base.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\CatCs.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\CheckIn.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\CheckOut.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\Lock.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\MkElem.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\MkLabel.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\MkLabelType.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\RmType.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\UnCheckOut.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\Unlock.cs" />
+    <Compile Include="NAntContrib\Tasks\ClearCase\Update.cs" />
+    <Compile Include="NAntContrib\Tasks\CodeStatsTask.cs" />
+    <Compile Include="NAntContrib\Tasks\COMRegisterTask.cs" />
+    <Compile Include="NAntContrib\Tasks\ConcatTask.cs" />
+    <Compile Include="NAntContrib\Tasks\DiscoTask.cs" />
+    <Compile Include="NAntContrib\Tasks\FxCopTask.cs" />
+    <Compile Include="NAntContrib\Tasks\GacInstallTask.cs" />
+    <Compile Include="NAntContrib\Tasks\GacTask.cs" />
+    <Compile Include="NAntContrib\Tasks\GacTaskBase.cs" />
+    <Compile Include="NAntContrib\Tasks\GacUninstallTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Grep\GrepTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Grep\LineCounter.cs" />
+    <Compile Include="NAntContrib\Tasks\Grep\Match.cs" />
+    <Compile Include="NAntContrib\Tasks\Grep\MatchCollection.cs" />
+    <Compile Include="NAntContrib\Tasks\Grep\Pattern.cs" />
+    <Compile Include="NAntContrib\Tasks\HxCompTask.cs" />
+    <Compile Include="NAntContrib\Tasks\HxRegTask.cs" />
+    <Compile Include="NAntContrib\Tasks\KillTask.cs" />
+    <Compile Include="NAntContrib\Tasks\LoadPropertiesTask.cs" />
+    <Compile Include="NAntContrib\Tasks\MgmtClassGenTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Mks\BaseTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Mks\CheckpointTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Mks\GetTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Mks\History.cs" />
+    <Compile Include="NAntContrib\Tasks\MSBuildTask.cs" />
+    <Compile Include="NAntContrib\Tasks\NGenTask.cs" />
+    <Compile Include="NAntContrib\Tasks\NUnit2Report\NUnit2ReportTask.cs" />
+    <Compile Include="NAntContrib\Tasks\NUnitReportTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Add.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Base.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Change.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Client.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Delete.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Edit.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Info.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Label.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Labelsync.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Print.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Reopen.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Revert.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Set.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Submit.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\P4Sync.cs" />
+    <Compile Include="NAntContrib\Tasks\Perforce\Perforce.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSAddFilesTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSAddUserTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSAssignGroupTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSChangeGroupTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSCommandArgument.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSCommandArgumentCollection.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSCommandArgumentPosition.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSCreateProjectTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSDeleteGroupTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSDeleteLabelTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSDeleteTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSDeleteUsersTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSGetTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSLabelTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSLockTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSMultipleEntityTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSProjectDatabaseTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSPromoteGroupTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSPutTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSRenameLabelTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSSingleEntityTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSTask.cs" />
+    <Compile Include="NAntContrib\Tasks\PVCS\PVCSUnlockTask.cs" />
+    <Compile Include="NAntContrib\Tasks\RecordTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SchemaValidatedTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SchemeType.cs" />
+    <Compile Include="NAntContrib\Tasks\ScpTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SlingshotTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\AddTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\BaseTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\CheckinTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\CheckoutTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\DeleteTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\DiffTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\GetTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\History.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\LabelTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SourceSafe\UndoCheckoutTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SqlTask.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\LabelTask.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\StarTeamAutoLabel.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\StarTeamCheckin.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\StarTeamCheckout.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\StarTeamLabel.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\StarTeamList.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\StarTeamTask.cs" />
+    <Compile Include="NAntContrib\Tasks\StarTeam\TreeBasedTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMBatch.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMBranch.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMCheckin.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMCheckout.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMFreeze.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMGet.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMLabel.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMTask.cs" />
+    <Compile Include="NAntContrib\Tasks\SurroundSCM\SSCMUnfreeze.cs" />
+    <Compile Include="NAntContrib\Tasks\Svn\AbstractSvnTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Svn\SvnCheckoutTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Svn\SvnTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Svn\SvnUpdateTask.cs" />
+    <Compile Include="NAntContrib\Tasks\TryCatchTask.cs" />
+    <Compile Include="NAntContrib\Tasks\TypedCollectionTask.cs" />
+    <Compile Include="NAntContrib\Tasks\ValidateXmlTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Vb6Task.cs" />
+    <Compile Include="NAntContrib\Tasks\VersionTask.cs" />
+    <Compile Include="NAntContrib\Tasks\WaitForExitTask.cs" />
+    <Compile Include="NAntContrib\Tasks\Web\ApplicationPool.cs" />
+    <Compile Include="NAntContrib\Tasks\Web\CreateVirtualDirectory.cs" />
+    <Compile Include="NAntContrib\Tasks\Web\DeleteVirtualDirectory.cs" />
+    <Compile Include="NAntContrib\Tasks\Web\VirtualDirectoryInfo.cs" />
+    <Compile Include="NAntContrib\Tasks\Web\WebBase.cs" />
+    <Compile Include="NAntContrib\Tasks\WsdlTask.cs" />
+    <Compile Include="NAntContrib\Tasks\XsdTask.cs" />
+    <Compile Include="NAntContrib\Types\Assembly.cs" />
+    <Compile Include="NAntContrib\Types\AssemblySet.cs" />
+    <Compile Include="NAntContrib\Types\BizTalk\ServiceStatus.cs" />
+    <Compile Include="NAntContrib\Types\ClearCase\TypeKind.cs" />
+    <Compile Include="NAntContrib\Types\CodeStatsCount.cs" />
+    <Compile Include="NAntContrib\Types\CodeStatsCountCollection.cs" />
+    <Compile Include="NAntContrib\Types\Filter.cs" />
+    <Compile Include="NAntContrib\Types\FilterCollection.cs" />
+    <Compile Include="NAntContrib\Types\FilterSet.cs" />
+    <Compile Include="NAntContrib\Types\FilterSetCollection.cs" />
+    <Compile Include="NAntContrib\Types\GacReference.cs" />
+    <Compile Include="NAntContrib\Types\NUnit2Report\ReportFormat.cs" />
+    <Compile Include="NAntContrib\Types\PVCS\Entity.cs" />
+    <Compile Include="NAntContrib\Types\PVCS\EntitySet.cs" />
+    <Compile Include="NAntContrib\Types\SchemaElement.cs" />
+    <Compile Include="NAntContrib\Types\XmlSchemaReference.cs" />
+    <Compile Include="NAntContrib\Types\XmlSchemaReferenceCollection.cs" />
+    <Compile Include="NAntContrib\Util\ChecksumHelper.cs" />
+    <Compile Include="NAntContrib\Util\FileLogListener.cs" />
+    <Compile Include="NAntContrib\Util\FileUtils.cs" />
+    <Compile Include="NAntContrib\Util\IniFile.cs" />
+    <Compile Include="NAntContrib\Util\SqlHelper.cs" />
+    <Compile Include="NAntContrib\Util\SqlStatementAdapter.cs" />
+    <Compile Include="NAntContrib\Util\SqlStatementList.cs" />
+    <Compile Include="NAntDocumenter.cs" />
+    <Compile Include="NAntDocumenterConfig.cs" />
+    <Compile Include="NAntLogger.cs" />
+    <Compile Include="NAntXsltUtilities.cs" />
+    <Compile Include="NUnitTask.cs" />
+    <Compile Include="NUnitTest.cs" />
+    <Compile Include="NUnitTestCollection.cs" />
+    <Compile Include="NUnitTestData.cs" />
+    <Compile Include="NUnitTestRunner.cs" />
     <Compile Include="PathScanner.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PlainTextFormatter.cs" />
     <Compile Include="PlatformHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Project.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ProjectBase.cs" />
+    <Compile Include="ProjectEntry.cs" />
+    <Compile Include="ProjectFactory.cs" />
+    <Compile Include="ProjectReferenceBase.cs" />
+    <Compile Include="ProjectSettings.cs" />
     <Compile Include="ProjectSettingsLoader.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PropertyDictionary.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Rainier\Solution.cs" />
+    <Compile Include="Rainier\SolutionProvider.cs" />
+    <Compile Include="ReferenceBase.cs" />
+    <Compile Include="ReferencesResolver.cs" />
+    <Compile Include="RemoteNUnitTestRunner.cs" />
+    <Compile Include="Reporting\TeamCityReportGenerator.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="RunListeners\NAntRunListener.cs" />
+    <Compile Include="RunListeners\RunListener.cs" />
+    <Compile Include="RunListeners\TeamCityRunListener.cs" />
+    <Compile Include="SchemeSpy\Column.cs" />
+    <Compile Include="SchemeSpy\ColumnRelationshipExclusionCollection.cs" />
+    <Compile Include="SchemeSpy\Schema.cs" />
+    <Compile Include="SchemeSpy\SchemaCollection.cs" />
+    <Compile Include="SchemeSpy\SchemaSpy.cs" />
+    <Compile Include="SchemeSpy\SchemaSpyValidator.cs" />
+    <Compile Include="SolutionBase.cs" />
+    <Compile Include="SolutionFactory.cs" />
     <Compile Include="Target.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -372,18 +708,37 @@
     <Compile Include="TaskContainer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\AbstractCvsTask.cs" />
+    <Compile Include="Tasks\AbstractSourceControlTask.cs" />
+    <Compile Include="Tasks\AlphaResxTask.cs" />
+    <Compile Include="Tasks\AppPoolTask.cs" />
+    <Compile Include="Tasks\AssemblyInfoTask.cs" />
+    <Compile Include="Tasks\AssemblyLinkerTask.cs" />
     <Compile Include="Tasks\AttribTask.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\AvailableTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\AxImpTask.cs" />
+    <Compile Include="Tasks\BabelTask.cs" />
     <Compile Include="Tasks\CallTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\ChangeLogTask.cs" />
+    <Compile Include="Tasks\CheckoutTask.cs" />
+    <Compile Include="Tasks\ClTask.cs" />
+    <Compile Include="Tasks\CobraTask.cs" />
+    <Compile Include="Tasks\CompilerBase.cs" />
     <Compile Include="Tasks\CopyTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\CscTask.cs" />
+    <Compile Include="Tasks\CvsPass.cs" />
+    <Compile Include="Tasks\CvsTask.cs" />
+    <Compile Include="Tasks\DefinedTask.cs" />
+    <Compile Include="Tasks\DefineTask.cs" />
+    <Compile Include="Tasks\DelaySignTask.cs" />
     <Compile Include="Tasks\DeleteTask.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -396,6 +751,8 @@
     <Compile Include="Tasks\ExecTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\ExpandBaseTask.cs" />
+    <Compile Include="Tasks\ExportTask.cs" />
     <Compile Include="Tasks\ExternalProgramBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -405,24 +762,41 @@
     <Compile Include="Tasks\GetTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\GUnzip.cs" />
     <Compile Include="Tasks\IfTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\IisApplicationMapping.cs" />
+    <Compile Include="Tasks\IlasmTask.cs" />
+    <Compile Include="Tasks\IldasmTask.cs" />
+    <Compile Include="Tasks\ILMergeTask.cs" />
     <Compile Include="Tasks\IncludeTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\InitializeMachineSpecificationsCountersTask.cs" />
+    <Compile Include="Tasks\InitializeMbUnitCountersTask.cs" />
+    <Compile Include="Tasks\JscTask.cs" />
+    <Compile Include="Tasks\LibTask.cs" />
+    <Compile Include="Tasks\LicenseTask.cs" />
+    <Compile Include="Tasks\LinkTask.cs" />
+    <Compile Include="Tasks\LintRelativePathsTask.cs" />
     <Compile Include="Tasks\LoadFileTask.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\LoadTasks.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\LocateSdkTask.cs" />
     <Compile Include="Tasks\LoopTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\MachineSpecificationsTask.cs" />
     <Compile Include="Tasks\MailTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\MbUnitTask.cs" />
+    <Compile Include="Tasks\McTask.cs" />
+    <Compile Include="Tasks\MidlTask.cs" />
     <Compile Include="Tasks\MkDirTask.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -435,39 +809,101 @@
     <Compile Include="Tasks\NAntTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\NDocTask.cs" />
+    <Compile Include="Tasks\PropertyDeleteTask.cs" />
     <Compile Include="Tasks\PropertyTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\RcTask.cs" />
+    <Compile Include="Tasks\ReadRegistryTask.cs" />
+    <Compile Include="Tasks\RegAsmTask.cs" />
     <Compile Include="Tasks\RegexTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\RegSvcsTask.cs" />
+    <Compile Include="Tasks\ResGenTask.cs" />
+    <Compile Include="Tasks\RTagTask.cs" />
+    <Compile Include="Tasks\ScriptTask.cs" />
+    <Compile Include="Tasks\ServiceControllerTask.cs" />
     <Compile Include="Tasks\SetEnvTask.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\SleepTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\SolutionTask.cs" />
     <Compile Include="Tasks\StyleTask.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\SysInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\TagTask.cs" />
+    <Compile Include="Tasks\TarTask.cs" />
+    <Compile Include="Tasks\TaskDefTask.cs" />
+    <Compile Include="Tasks\TdcTask.cs" />
+    <Compile Include="Tasks\TlbExpTask.cs" />
+    <Compile Include="Tasks\TlbImpTask.cs" />
     <Compile Include="Tasks\TouchTask.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\TStampTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\UnTarTask.cs" />
+    <Compile Include="Tasks\UnZipTask.cs" />
+    <Compile Include="Tasks\UpdateTask.cs" />
     <Compile Include="Tasks\UpToDateTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\VbcTask.cs" />
+    <Compile Include="Tasks\VjcTask.cs" />
     <Compile Include="Tasks\XmlPeekTask.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tasks\XmlPokeTask.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tasks\ZipTask.cs" />
+    <Compile Include="TeamCity\Common\BuildEnvironment\DebugConsoleRunnerBuildEnvironment.cs" />
+    <Compile Include="TeamCity\Common\BuildEnvironment\DebugNAntRunnerBuildEnvironment.cs" />
+    <Compile Include="TeamCity\Common\BuildEnvironment\DefaultBuildEnvironment.cs" />
+    <Compile Include="TeamCity\Common\BuildEnvironment\IBuildEnvironment.cs" />
+    <Compile Include="TeamCity\Common\BuildEnvironment\IEnvironment.cs" />
+    <Compile Include="TeamCity\Common\BuildEnvironment\SystemEnvironment.cs" />
+    <Compile Include="TeamCity\Common\Container\IoC.cs" />
+    <Compile Include="TeamCity\Common\Container\Registrations.cs" />
+    <Compile Include="TeamCity\Common\Helper\Ensure.cs" />
+    <Compile Include="TeamCity\Common\Helper\FileSetHelper.cs" />
+    <Compile Include="TeamCity\Common\Helper\PropertyDictionaryHelper.cs" />
+    <Compile Include="TeamCity\Common\Messaging\DefaultTeamCityLogWriter.cs" />
+    <Compile Include="TeamCity\Common\Messaging\ExceptionInfo.cs" />
+    <Compile Include="TeamCity\Common\Messaging\Formatter.cs" />
+    <Compile Include="TeamCity\Common\Messaging\ITeamCityMessageProvider.cs" />
+    <Compile Include="TeamCity\Common\Messaging\TeamCityLogWriter.cs" />
+    <Compile Include="TeamCity\Common\Messaging\TeamCityMessageProvider.cs" />
+    <Compile Include="TeamCity\Functions\TeamCityFunctions.cs" />
+    <Compile Include="TeamCity\Tasks\AddStatisticFromPropertiesTask.cs" />
+    <Compile Include="TeamCity\Tasks\AddStatisticListTask.cs" />
+    <Compile Include="TeamCity\Tasks\AddStatisticTask.cs" />
+    <Compile Include="TeamCity\Tasks\BuildLogTask.cs" />
+    <Compile Include="TeamCity\Tasks\BuildNumberTask.cs" />
+    <Compile Include="TeamCity\Tasks\BuildStatusTask.cs" />
+    <Compile Include="TeamCity\Tasks\ImportDataTask.cs" />
+    <Compile Include="TeamCity\Tasks\MessageTask.cs" />
+    <Compile Include="TeamCity\Tasks\ProgressTask.cs" />
+    <Compile Include="TeamCity\Tasks\PublishArtifactsTask.cs" />
+    <Compile Include="TeamCity\Tasks\StatusTextTask.cs" />
+    <Compile Include="TeamCity\Tasks\TeamCityTask.cs" />
+    <Compile Include="TeamCity\Types\ActionType.cs" />
+    <Compile Include="TeamCity\Types\ProgressType.cs" />
+    <Compile Include="TeamCity\Types\StatusType.cs" />
+    <Compile Include="TestResultExtra.cs" />
+    <Compile Include="ToDo.cs" />
+    <Compile Include="ToDoItem.cs" />
+    <Compile Include="ToDoTask.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokenCollection.cs" />
     <Compile Include="TypeFactory.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -477,12 +913,28 @@
     <Compile Include="Types\ArgumentCollection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\AssemblyAttribute.cs" />
+    <Compile Include="Types\AssemblyAttributeCollection.cs" />
+    <Compile Include="Types\AssemblyFileSet.cs" />
+    <Compile Include="Types\CharacterSet.cs" />
+    <Compile Include="Types\CompilerWarning.cs" />
+    <Compile Include="Types\CompilerWarningCollection.cs" />
+    <Compile Include="Types\Counter.cs" />
     <Compile Include="Types\Credential.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\CssMinifier.cs" />
+    <Compile Include="Types\CvsFileSet.cs" />
+    <Compile Include="Types\DebugOutput.cs" />
+    <Compile Include="Types\DefinedTaskContainer.cs" />
+    <Compile Include="Types\DefinedTaskDefinitions.cs" />
+    <Compile Include="Types\DelaySign.cs" />
     <Compile Include="Types\DirSet.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\DuplicateHandling.cs" />
+    <Compile Include="Types\EmbeddedResource.cs" />
+    <Compile Include="Types\EmbeddedResourceCollection.cs" />
     <Compile Include="Types\EnvironmentVariable.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -492,21 +944,35 @@
     <Compile Include="Types\FileSet.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\FilterSet.cs" />
     <Compile Include="Types\Formatter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Types\FormatterCollection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\IncludeSet.cs" />
+    <Compile Include="Types\jsmin.cs" />
+    <Compile Include="Types\Library.cs" />
+    <Compile Include="Types\LibraryCollection.cs" />
     <Compile Include="Types\ManagedExecution.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\Module.cs" />
+    <Compile Include="Types\ModuleCollection.cs" />
+    <Compile Include="Types\ModuleSet.cs" />
+    <Compile Include="Types\NamespaceImport.cs" />
+    <Compile Include="Types\NamespaceImportCollection.cs" />
+    <Compile Include="Types\NodeParam.cs" />
+    <Compile Include="Types\NodeParamCollection.cs" />
     <Compile Include="Types\Option.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Types\OptionCollection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\Package.cs" />
+    <Compile Include="Types\PackageCollection.cs" />
     <Compile Include="Types\PathElement.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -528,9 +994,25 @@
     <Compile Include="Types\RawXml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\RegexItem.cs" />
+    <Compile Include="Types\ResourceFileSet.cs" />
+    <Compile Include="Types\ResourceFileSetCollection.cs" />
+    <Compile Include="Types\StringParam.cs" />
+    <Compile Include="Types\StringParamCollection.cs" />
+    <Compile Include="Types\Symbol.cs" />
+    <Compile Include="Types\SymbolCollection.cs" />
+    <Compile Include="Types\TarCompressionMethod.cs" />
+    <Compile Include="Types\TarFileSet.cs" />
+    <Compile Include="Types\TarFileSetCollection.cs" />
     <Compile Include="Types\Token.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\UseOfATL.cs" />
+    <Compile Include="Types\UseOfMFC.cs" />
+    <Compile Include="Types\UsePrecompiledHeader.cs" />
+    <Compile Include="Types\WarningAsError.cs" />
+    <Compile Include="Types\WebMap.cs" />
+    <Compile Include="Types\WebMapCollection.cs" />
     <Compile Include="Types\XmlNamespace.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -549,6 +1031,9 @@
     <Compile Include="Types\XsltParameterCollection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\ZipFileSet.cs" />
+    <Compile Include="Types\ZipFileSetCollection.cs" />
+    <Compile Include="Util\ArgumentUtils.cs" />
     <Compile Include="Util\AssemblyResolver.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -597,9 +1082,1038 @@
     <Compile Include="ValidationException.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VBProject.cs" />
+    <Compile Include="VBProjectProvider.cs" />
+    <Compile Include="VcArgumentMap.cs" />
+    <Compile Include="VcAssemblyReference.cs" />
+    <Compile Include="VcConfigurationBase.cs" />
+    <Compile Include="VcFileConfiguration.cs" />
+    <Compile Include="VcProject.cs" />
+    <Compile Include="VcProjectConfiguration.cs" />
+    <Compile Include="VCProjectProvider.cs" />
+    <Compile Include="VcProjectReference.cs" />
+    <Compile Include="VcWrapperReference.cs" />
+    <Compile Include="WebDavClient.cs" />
+    <Compile Include="WhidbeySolution.cs" />
+    <Compile Include="WhidbeySolutionProvider.cs" />
+    <Compile Include="WrapperReferenceBase.cs" />
     <Compile Include="XmlLogger.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XmlResultFormatter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Compatibility\SilverlightHacks.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\AbstractDictionaryAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\AbstractDictionaryAdapterVisitor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\ComponentAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\DictionaryAdapterAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\DictionaryBehaviorAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\FetchAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\GroupAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\KeyAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\KeyPrefixAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\KeySubstitutionAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\MultiLevelEditAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\NewGuidAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\OnDemandAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\PropagateNotificationsAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\RemoveIfAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\StringFormatAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\StringListAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\StringStorageAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\StringValuesAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\SuppressNotificationsAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\TypeKeyPrefixAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\XmlDefaultsAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\XmlNamespaceAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\XPathAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Attributes\XPathFunctionAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\CascadingDictionaryAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DefaultPropertyGetter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DefaultXmlSerializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.Coerce.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.Copy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.Create.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.Edit.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.Notify.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterBase.Validate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterInstance.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryAdapterMeta.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\DictionaryValidateGroup.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\GenericDictionaryAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryAdapterFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryAdapterVisitor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryBehavior.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryBehaviorBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryCoerceStrategy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryCopyStrategy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryCreate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryCreateStrategy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryEdit.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryEqualityHashCodeStrategy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryInitializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryKeyBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryMetaInitializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryNotify.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryPropertyGetter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryPropertySetter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryValidate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IDictionaryValidator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IPropertyDescriptorInitializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\IXPathSerializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\MemberwiseEqualityHashCodeStrategy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\NameValueCollectionAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\PropertyDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\BehaviorVisitor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\BindingListInitializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\DynamicValue.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\DynamicValueDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\EditableBindingList.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\EditableList.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\ICondition.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\IDynamicValue.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\IValueInitializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\Util\PriorityBehaviorExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\XmlMetadata.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\XPathAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\XPathBehavior.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\XPathContext.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\XPathExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Components.DictionaryAdapter\XPathResult.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\CollectionExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Configuration\AbstractConfiguration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Configuration\ConfigurationAttributeCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Configuration\ConfigurationCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Configuration\IConfiguration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Configuration\MutableConfiguration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Configuration\Xml\XmlConfigurationDeserializer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Extensions\SilverlightExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Extensions\SimpleConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\AttributesUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\ILockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\InternalsVisible.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\IUpgradeableLockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\Lock.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\MonitorLock.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\MonitorLockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\MonitorUpgradeableLockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\NoOpLock.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\NoOpUpgradeableLock.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\PermissionUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\SlimReadLockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\SlimReadWriteLock.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\SlimUpgradeableReadLockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Internal\SlimWriteLockHolder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\IServiceEnabledComponent.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\IServiceProviderEx.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\IServiceProviderExAccessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\AbstractExtendedLoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\AbstractLoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\ConsoleFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\ConsoleLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\DiagnosticsLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\DiagnosticsLoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\IContextProperties.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\IContextStack.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\IContextStacks.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\IExtendedLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\IExtendedLoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\ILogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\ILoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\LevelFilteredLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\LoggerException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\LoggerLevel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\NullLogFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\NullLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\StreamLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\StreamLoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\TraceLogger.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Logging\TraceLoggerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Pair.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\ProxyServices.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\ReferenceEqualityComparer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\ReflectionBasedDictionaryAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\AbstractResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\AbstractStreamResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\AssemblyBundleResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\AssemblyResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\AssemblyResourceFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\ConfigResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\ConfigResourceFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\CustomUri.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\FileResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\FileResourceFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\IResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\IResourceFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\ResourceException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\StaticContentResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\UncResource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Resource\UncResourceFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Smtp\DefaultSmtpSender.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\Smtp\IEmailSender.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\Core\StringObjectDictionaryAdapter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\AbstractInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\AllMethodsHook.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\AttributeUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\CacheMappingsAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\CompositionInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ClassMembersCollector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ClassProxyInstanceContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ClassProxyTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ClassProxyWithTargetTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\CompositeTypeContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\DelegateProxyTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\Delegates.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\DelegateTypeGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ForwardingMethodGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceMembersCollector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceMembersOnClassCollector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceProxyInstanceContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceProxyTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceProxyWithOptionalTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceProxyWithoutTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InterfaceProxyWithTargetInterfaceTargetContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InvocationWithDelegateContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\InvocationWithGenericDelegateContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ITypeContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\MembersCollector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\MinimialisticMethodGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\MixinContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\OptionallyForwardingMethodGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\ProxyInstanceContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Contributors\WrappedClassMembersCollector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\DefaultProxyBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\AttributeDisassembler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\AttributesToAvoidReplicating.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\BaseProxyGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\CacheKey.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\ClassProxyGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\ClassProxyWithTargetGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\CompositionInvocationTypeGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\DelegateMembersCollector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\DelegateProxyGenerationHook.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\DelegateProxyGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\AbstractTypeEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\ArgumentsUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\ClassEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\CodeBuilders\AbstractCodeBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\CodeBuilders\ConstructorCodeBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\CodeBuilders\MethodCodeBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\ConstructorCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\ConstructorEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\EventCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\EventEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\GenericUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\IMemberEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\LdcOpCodesDictionary.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\LdindOpCodesDictionary.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\MethodCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\MethodEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\NestedClassCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\NestedClassEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\OpCodeUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\PropertiesCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\PropertyEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\AddressOfReferenceExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ArgumentReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\AssignArgumentStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\AssignArrayStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\AssignStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\AsTypeReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\BindDelegateExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ByRefReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ConstReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ConstructorInvocationStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ConvertExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\DefaultValueExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\Expression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ExpressionStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\FieldReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\IfNullExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\IILEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\IndirectReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\LiteralIntExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\LoadArrayElementExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\LoadRefArrayElementExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\LocalReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\MethodInvocationExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\MethodTokenExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\MultiStatementExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\NewArrayExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\NewInstanceExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\NopStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\NullCoalescingOperatorExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\NullExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\Reference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ReferenceExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ReferencesToObjectArrayExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ReturnReferenceExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ReturnStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\SelfReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\Statement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\ThrowStatement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\TypeReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\SimpleAST\TypeTokenExpression.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\StindOpCodesDictionary.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\StrongNameUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\TypeConstructorEmitter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\Emitters\TypeUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\GeneratorException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\GeneratorUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\IGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\IInvocationCreationContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\INamingScope.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\InheritanceInvocationTypeGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithoutTargetGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithTargetGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\InterfaceProxyWithTargetInterfaceGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\InvocationTypeGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MetaEvent.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MetaMethod.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MetaProperty.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MetaType.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MetaTypeElement.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MethodFinder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MethodGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MethodSignatureComparer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\MethodWithInvocationGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\NamingScope.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Generators\TypeElementCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IAttributeDisassembler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IChangeProxyTarget.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IInterceptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IInterceptorSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\InheritanceInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\InternalsHelper.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\InvalidMixinConfigurationException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\InvocationHelper.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IProxyBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IProxyGenerationHook.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\IProxyTargetAccessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\MixinData.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\ModuleScope.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\PersistentProxyBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\ProxyGenerationException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\ProxyGenerationOptions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\ProxyGenerator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\RemotableInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Serialization\ProxyObjectReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Serialization\ProxyTypeConstants.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\StandardInterceptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\DelegateMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\FormatterServicesMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\InvocationMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\MethodBaseMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\SerializationInfoMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\TypeBuilderMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\TypeMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Core\DynamicProxy\Tokens\TypeUtilMethods.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\AutoregisterPerWebRequestLifestyleModule.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Compatibility\SilverlightHacks.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\CastleComponentAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ComponentActivatorAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ComponentModel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ComponentName.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ComponentProxyBehaviorAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ConstructorCandidate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ConstructorCandidateCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ConstructorDependencyModel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\DependencyModel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\DependencyModelCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\DoNotWireAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ICommissionConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\IDecommissionConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\IInitializable.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ILifecycleConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\InterceptorAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\InterceptorReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\InterceptorReferenceCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Interceptor\IOnBehalfAware.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\ComponentServicesUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\Constants.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\GraphNode.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\GraphSets.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\IAssemblyProvider.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\IVertex.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\LateBoundComponent.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\ReflectionUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\SimpleSortedSet.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\ThreadSafeFlag.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\ThreadSafeInit.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\TopologicalSortAlgo.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\TypeByInheritanceDepthMostSpecificFirstComparer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\Internal\TypeUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\IRecyclable.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\IStartable.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\LifecycleConcernsCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\LifestyleAttributes.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\LifestyleType.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\MethodMetaModel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\MethodMetaModelCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ParameterModel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\ParameterModelCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\PropertiesInspectionBehavior.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\PropertySet.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Core\PropertySetCollection.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\Startable\StartableContributor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\Startable\StartableFacility.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\Startable\StartableFacilityRegistrationExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\Startable\StartConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\Startable\StopConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\DefaultDelegateComponentSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\DefaultTypedFactoryComponentSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\FactoryEntry.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\Internal\DelegateFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\Internal\DelegateProxyFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\Internal\Empty.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\Internal\FactoryInterceptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\Internal\FactoryMethod.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\Internal\TypedFactoryInterceptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\ITypedFactoryComponentResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\ITypedFactoryComponentSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\TypedFactoryCachingInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\TypedFactoryCollectionResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\TypedFactoryComponentResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\TypedFactoryConfiguration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\TypedFactoryFacility.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Facilities\TypedFactory\TypedFactoryRegistrationExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\AbstractSubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Arguments.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Burden.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\CircularDependencyException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\AbstractComponentActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\ComponentActivatorException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\DefaultComponentActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\ExternalInstanceActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\FactoryMethodActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\IDependencyAwareActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\NoResolvableConstructorFoundException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentActivator\WebUserControlComponentActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentNotFoundException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentRegistrationException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ComponentResolutionException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Context\CreationContext.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Context\IArgumentsComparer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\DefaultKernel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\DefaultKernel_Events.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\DefaultKernel_ObsoleteAPI.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\DefaultKernel_Resolve.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Facilities\AbstractFacility.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Facilities\FacilityException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\HandlerState.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\HandlerStateDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\AbstractHandler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ComponentLifecycleExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ComponentReleasingDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ComponentResolvingDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\DefaultGenericHandler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\DefaultHandler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\DefaultHandlerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\DependencyInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ExtendedHandler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\GenericHandlerTypeMismatchException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\HandlerException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\HandlerExtensionsUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\IDependencyInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\IExposeDependencyInfo.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\IGenericImplementationMatchingStrategy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\IReleaseExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\IResolveExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ParentHandlerWithChildResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ReleaseInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Handlers\ResolveInvocation.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IComponentActivator.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IComponentModelFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IDependencyResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IFacility.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IHandler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IHandlerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IHandlerSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IHandlersFilter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IKernel.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IKernelEvents.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IKernelEventsInternal.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IKernelInternal.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IKernel_ObsoleteAPI.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IKernel_Resolve.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ILifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\InstanceReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Internal\LazyEx.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IProxyFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IProxyFactoryExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IReference.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\IReleasePolicy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ISubDependencyResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ISubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\KernelException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\DisposalConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\InitializationConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\LateBoundConcerns.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\LifecycleActionDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\OnCreatedConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\OnDestroyConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\LifecycleConcerns\SupportInitializeConcern.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\AbstractLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\PerThreadLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\PerThreadThreadStaticLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\PerWebRequestLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\PerWebRequestLifestyleModule.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\PerWebRequestLifestyleModuleRegistration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\PoolableLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Pool\DefaultPool.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Pool\DefaultPoolFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Pool\IPool.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Pool\IPoolFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Pool\PoolException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\IScopeAccessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\IScopeManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\LifestyleExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\LifestyleScope.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\ScopedLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\ScopeSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\ScopeSubsystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\ThreadScopeAccessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\Scoped\WebScopeAccessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\SingletonLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Lifestyle\TransientLifestyleManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\DefaultComponentModelBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\AbstractOverwriteableDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\AbstractPropertyDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\AttributeDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ConfigurationDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\CustomDependencyDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\DefaultsDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\DynamicParametersDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ExtendedPropertiesDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\InterceptorDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\InterceptorSelectorDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\InterfaceProxyDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\LifestyleDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\OnCreateComponentDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\OnDestroyComponentDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ParametersDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ProxyHookDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ProxyInterfacesDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ProxyMixInsDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ReferenceDependencyDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ServiceOverrideDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Descriptors\ServicesDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\IComponentModelDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\IContributeComponentModelConstruction.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\ComponentActivatorInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\ComponentProxyInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\ConfigurationModelInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\ConfigurationParametersInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\ConstructorDependenciesModelInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\ExtendedPropertiesConstants.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\GenericInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\InterceptorInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\LifecycleModelInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\LifestyleModelInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\MethodMetaInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\MixinInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\ModelBuilder\Inspectors\PropertiesDependenciesModelInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Proxy\IModelInterceptorsSelector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Proxy\NotSupportedProxyFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Proxy\ProxyConstants.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Proxy\ProxyOptions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Proxy\ProxyUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\AllTypes.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\AllTypesOf.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\AssemblyFilter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\BasedOnDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Component.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ComponentDependencyRegistrationExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ComponentRegistration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ComponentRegistration.nonGeneric.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Configuration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ConfigureDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ConfigureDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Dependency.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\DynamicParametersDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\DynamicParametersResolveDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\DynamicParametersWithContextResolveDelegate.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\FromAssemblyDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\FromDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\FromTypesDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Interceptor\InterceptorGroup.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\IRegistration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\IWindsorInstaller.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Lifestyle\LifestyleGroup.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Parameter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Property.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Proxy\ItemRegistration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Proxy\MixinRegistration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\Proxy\ProxyGroup.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\RegistrationGroup.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ServiceDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Registration\ServiceOverride.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Releasers\LifecycledComponentsReleasePolicy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Releasers\NoTrackingReleasePolicy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\DefaultDependencyResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\DependencyResolverException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\ILazyComponentLoader.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\LazyOfTComponentLoader.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\SpecializedResolvers\ArrayResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\SpecializedResolvers\CollectionResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Resolvers\SpecializedResolvers\ListResolver.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystemConstants.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Configuration\DefaultConfigurationStore.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Configuration\IConfigurationStore.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\AbstractTypeConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ArrayConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\AttributeAwareConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ComponentConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ComponentModelConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ConverterException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ConvertibleAttribute.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\DefaultComplexConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\DefaultConversionManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\DictionaryConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\EnumConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\GenericDictionaryConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\GenericListConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\IConversionManager.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\IGenericCollectionConverterHelper.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\IKernelDependentConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ITypeConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ITypeConverterContext.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ITypeNameParser.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\ListConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\NullableConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\PrimitiveConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\SubSystemExtensions.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\TimeSpanConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\TypeDescriptor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\TypeName.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\TypeNameConverter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Conversion\TypeNameParser.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Naming\DefaultNamingSubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Naming\IExposeDefaultComponentsForServices.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Naming\INamingSubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Resource\DefaultResourceSubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\SubSystems\Resource\IResourceSubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Util\ReferenceExpressionUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Util\SimpleMethodEqualityComparer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\MicroKernel\Util\SimpleTypeEqualityComparer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\AppDomain\CastleSectionHandler.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\IConfigurationInterpreter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\AbstractInterpreter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlInterpreter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ConfigurationProcessingException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\DefaultXmlProcessorEngine.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\DefaultXmlProcessorNodeList.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\AbstractStatementElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\AbstractXmlNodeProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\AttributesElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\ChooseElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\DefaultElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\DefaultTextNodeProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\DefinedProcessingInstructionProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\DefineElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\EvalProcessingInstructionProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\IfElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\IfProcessingInstructionProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\IncludeElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\PropertiesElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\UndefElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\UndefProcessingInstructionProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\ElementProcessors\UsingElementProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\IXmlNodeProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\IXmlProcessorEngine.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\IXmlProcessorNodeList.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\XmlProcessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Configuration\Interpreters\XmlProcessor\XmlProcessorException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\AllComponentsDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\DebuggerViews\ComponentDebuggerView.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\DebuggerViews\ComponentStatusDebuggerViewItem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\DebuggerViews\DebuggerViewItem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\DebuggerViews\MismatchedDependencyDebuggerViewItem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\DebuggerViews\ReleasePolicyTrackedObjectsDebuggerViewItem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\DefaultDiagnosticsSubSystem.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\AbstractContainerDebuggerExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\AllComponents.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\DefaultComponentPerService.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\Facilities.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\PotentialLifestyleMismatches.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\PotentiallyMisconfiguredComponents.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Extensions\ReleasePolicyTrackedObjects.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Helpers\DefaultComponentViewBuilder.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Helpers\DescriptionUtil.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IAllComponentsDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IComponentDebuggerExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IContainerDebuggerExtension.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IContainerDebuggerExtensionHost.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IDiagnosticsHost.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IDiagnosticsInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IDiagnosticsSource.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IExposeDiagnostics.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Inspectors\ITrackedObjectsInspector.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\Inspectors\TrackedObjects.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IPerformanceCounter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IPerformanceMetricsFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IPotentialLifestyleMismatchesDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\IPotentiallyMisconfiguredComponentsDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\ITrackedComponentsDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\KernelDebuggerProxy.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\NullPerformanceCounter.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\PerformanceCounterWrapper.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\PerformanceMetricsFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\PotentialLifestyleMismatchesDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\PotentiallyMisconfiguredComponentsDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\TrackedComponentsDiagnostic.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Experimental\Diagnostics\TrackedInstancesEventArgs.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\IComponentsInstaller.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\IContainerAccessor.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\IEnvironmentInfo.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\InitializationException.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\AssemblyInstaller.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\CompositeInstaller.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\Configuration.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\ConfigurationInstaller.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\DefaultComponentInstaller.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\FromAssembly.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\InstallerFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Installer\PartialConfigurationStore.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\IWindsorContainer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Proxy\AbstractProxyFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\Proxy\DefaultProxyFactory.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\WindsorContainer.cs" />
+    <Compile Include="~SupportingFiles\Castle.Windsor\Windsor\WindsorServiceProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\IO\BufferedStreamEx.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\IO\ChunkedMemoryStream.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\IO\ChunkedReadStream.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\IO\ChunkedWriteStream.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\IO\FixedReadStream.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\Pipe.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeInstance.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeInstancePool.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeIOException.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeName.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeNative.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeOption.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeOverlappedAsyncResult.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Net\Pipes\PipeRequestQueue.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\BinaryConnection.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\BinaryWireProtocol.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\ChannelHelper.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\ClientTransportSink.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\ConnectionCache.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\HostConnections.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\IConnection.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Pipes\PipeChannel.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Pipes\PipeClientChannel.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Pipes\PipeClientTransportSinkProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Pipes\PipeServerChannel.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\RequestQueue.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\ServerTransportSink.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Tcp\TcpChannel.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Tcp\TcpClientChannel.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Tcp\TcpClientTransportSinkProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Channels\Tcp\TcpServerChannel.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\Binary\BinaryClientFormatterSinkProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\Binary\BinaryServerFormatterSinkProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\Binary\BinaryWireFormatter.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\ClientFormatterSink.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\IWireFormatter.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\ServerFormatterSink.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\Simple\SimpleClientFormatterSinkProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\Simple\SimpleServerFormatterSinkProvider.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Formatters\Simple\SimpleWireFormatter.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\RemotingExceptionEx.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\RemotingService.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\IAsyncTransport.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\ITransport.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\Pipes\PipeTransport.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\Tcp\TcpTransport.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\TransportAsyncResult.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\TransportAsyncWorker.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\TransportAsyncWrapper.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\TransportClient.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\TransportListener.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Runtime\Remoting\Transport\TransportStream.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\AccessControlEntry.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\AccessControlEntryFlags.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\AccessControlEntryType.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\AccessControlList.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\AccessMask.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecureObject.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecureObjectType.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecurityDescriptor.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecurityDescriptorControl.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecurityIdentifier.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecurityInformationType.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SecurityNative.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\IAuthModule.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\NTAuthModule.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityBuffers.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityContext.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityContextAttributes.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityContextState.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityContextType.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityCredentials.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityCredentialsType.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SecurityPackage.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SSPIException.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Security\SSPI\SSPINative.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\ByteBufferPool.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\IntPtrHelper.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\MarshalHelper.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\NativeHandles.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\NetHelper.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\StreamHelper.cs" />
+    <Compile Include="~SupportingFiles\DocsVision.Remoting\Util\Win32.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\AssemblyHelper.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Commands\LoginCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\ConsoleMain.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\ConsoleWriter.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\AbstractCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\AddCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\CheckoutCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\Command.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\CommandLineParseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\CommandLineParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\CommandParserFactory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\CommitCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\FileParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\ICommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\ImportCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\InitCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\ListCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\LogCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\RemoveCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\RTagCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\StatusCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\UpdateCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\Usage.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Console\Parser\XmlLogCommandParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Attributes\AuthorAttribute.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Attributes\ProtocolAttribute.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Client\CVSServerConnection.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Client\ICommandConnection.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Client\IConnection.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Client\IResponseServices.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\AddCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\CheckoutModuleCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\CommitCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\DiffCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\ICommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\ILogCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\ImportModuleCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\InitCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\ListCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\LogCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\RemoveCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\RetreiveFilelistCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\RLogCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\RTagCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\StatusCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\UpdateCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Commands\XmlLogCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Config\Logging\Debug.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Config\Logging\LogConfig.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Config\SharpCvsLibConfig.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Config\SharpCvsLibConfigHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\AuthenticationException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\CvsRootParseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\DuplicateEntryException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\EntryNotFoundException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\EntryParseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\ExecuteShellException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\InvalidPathException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\UnsupportedFileTypeException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\UnsupportedProtocolException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Exceptions\UnsupportedResponseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\ChangeLogReport\CvsChangeLog.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\ChangeLogReport\FileRevision.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\ChangeLogReport\LogEntry.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\LogReporter\LogFile.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\LogReporter\LogReport.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\LogReporter\LogReportCommand.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\LogReporter\LogRevision.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\LogReporter\LogSymbolicName.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Extension\LogReporter\LogSymbolicNames.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileHandler\CompressedFileHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileHandler\IFileHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileHandler\UncompressedFileHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\AbstractCvsFile.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\CvsFileNotFoundException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\DuplicateEntryException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Entries.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Entry.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\EntryParseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Factory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Folder.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Folders.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\ICvsFile.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\InvalidPathException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Manager.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\PathTranslator.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Probe.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Repository.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Root.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\Tag.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\FileSystem\UnsupportedFileTypeException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Logs\RequestLog.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Logs\ResponseLog.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\EncodedMessage.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\IMessage.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\MessageEventArgs.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\MessageEventHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\ProcessEventArgs.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\ProcessEventHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Messages\UpdateMessage.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Misc\CvsRoot.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Misc\CvsRootParseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Misc\PasswordScrambler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Misc\TraceUtil.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Misc\UnsupportedProtocolException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Misc\WorkingDirectory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Protocols\AbstractProtocol.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Protocols\ExtProtocol.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Protocols\IProtocol.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Protocols\ProtocolFactory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Protocols\PServerProtocol.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Protocols\SspiProtocol.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Remoting\Transport\SharpCvsLibTransport\CvsTransport.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\AbstractRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\AddRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\AnnotateRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ArgumentRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ArgumentxRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\CaseRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\CheckoutRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\CommitRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\DateRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\DiffRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\DirectoryRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\EntryRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ExpandModulesRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ExportRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\GlobalOptionRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\GzipFileContentsRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\GzipStreamRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ImportRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\InitRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\IRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\IsModifiedRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ListRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\LogRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ModifiedRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\PServerAuthRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\QuestionableRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RDiffRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RemoveRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RequestMessageEventArgs.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RequestMessageEventHandler.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RLogRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RootRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\RTagRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\StatusRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\StickyRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\TagRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\UnchangedRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\UpdateRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\UploadFileRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\UseUnchangedRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ValidRequestsRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Requests\ValidResponsesRequest.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\AbstractResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\CheckedInResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ClearStaticDirectoryResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ClearStickyResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\CreatedResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ErrorMessageResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ErrorResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\IResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ListResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\MergedResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\MessageResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\MessageTaggedResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ModTimeResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ModuleExpansionResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\NewEntryResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\OkResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\RemovedResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ResponseFactory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ResponseMessageEvents.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\SetStaticDirectoryResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\SetStickyResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\UnsupportedResponseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\UpdatedResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Responses\ValidRequestsResponse.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Streams\CvsStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Util\DateParser.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Util\EncodingUtil.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpCvsLib\Util\ToStringFormatter.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\BZip2\BZip2.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\BZip2\BZip2Constants.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\BZip2\BZip2Exception.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\BZip2\BZip2InputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\BZip2\BZip2OutputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Checksums\Adler32.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Checksums\CRC32.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Checksums\IChecksum.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Checksums\StrangeCRC.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\FileSystemScanner.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\INameTransform.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\IScanFilter.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\NameFilter.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\PathFilter.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\StreamUtils.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Encryption\ZipAESStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Encryption\ZipAESTransform.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\GZip\GZIPConstants.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\GZip\GZipException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\GZip\GzipInputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\GZip\GzipOutputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Lzw\LzwConstants.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Lzw\LzwException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Lzw\LzwInputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Main.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\SharpZipBaseException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\InvalidHeaderException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarArchive.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarBuffer.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarEntry.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarHeader.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarInputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Tar\TarOutputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\FastZip.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\IEntryFactory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipConstants.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipEntry.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipException.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipExtraData.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipFile.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipInputStream.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="~SupportingFiles\ICSharpCode.SharpZipLib\Zip\ZipOutputStream.cs" />
     <EmbeddedResource Include="Resources\ProjectHelp.xslt" />
     <EmbeddedResource Include="Resources\Strings.resx" />
   </ItemGroup>
@@ -620,6 +2134,29 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NAntContrib\Tasks\NUnit2Report\xsl\i18n.xsl" />
+    <EmbeddedResource Include="NAntContrib\Tasks\NUnit2Report\xsl\NUnit-Frame.xsl" />
+    <EmbeddedResource Include="NAntContrib\Tasks\NUnit2Report\xsl\NUnit-NoFrame.xsl" />
+    <EmbeddedResource Include="NAntContrib\Tasks\NUnit2Report\xsl\toolkit.xsl" />
+    <Content Include="NAntContrib\xsl\NUnitSummary.xsl" />
+    <Content Include="NAntContrib\xsl\toolkit.xsl" />
+    <Content Include="Resources\common.xslt" />
+    <Content Include="Resources\filter-index.xslt" />
+    <Content Include="Resources\function-doc.xslt" />
+    <Content Include="Resources\function-index.xslt" />
+    <Content Include="Resources\nant-attributes.xslt" />
+    <Content Include="Resources\tags.xslt" />
+    <Content Include="Resources\task-index.xslt" />
+    <Content Include="Resources\type-doc.xslt" />
+    <Content Include="Resources\type-index.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NAntContrib\Tasks\NAnt.xsd" />
+    <None Include="TeamCity\Tasks\ClassDiagram.cd" />
+    <None Include="~SupportingFiles\Castle.Core\DynamicProxy\DynProxy.snk" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent />

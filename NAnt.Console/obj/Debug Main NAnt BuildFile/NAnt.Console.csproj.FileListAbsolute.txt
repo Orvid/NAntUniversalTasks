@@ -1,0 +1,2 @@
+D:\Documents and Settings\Orvid\Desktop\NAntUniversalTasks\build.VS.NET\NAnt.exe.config
+D:\Documents and Settings\Orvid\Desktop\NAntUniversalTasks\Nant.Console\obj\Debug Main NAnt BuildFile\ResolveAssemblyReference.cache
